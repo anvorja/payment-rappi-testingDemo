@@ -12,9 +12,9 @@ export function ThemeFavicon() {
 
         if (link) {
             if (currentTheme === 'dark') {
-                link.href = 'https://res.cloudinary.com/dv2xu8dwr/image/upload/v1736252278/analitica-de-datos_ael8fg.png'
+                link.href = 'https://res.cloudinary.com/dv2xu8dwr/image/upload/v1743286802/27239f0e0e1611c19157c313b075ad36d189262885639b1c98e1cfb94f91efb8_200_uwydxt.webp'
             } else {
-                link.href = 'https://res.cloudinary.com/dv2xu8dwr/image/upload/v1736252278/analitica-de-datos-black_osqvyo.png'
+                link.href = 'https://res.cloudinary.com/dv2xu8dwr/image/upload/v1743286802/27239f0e0e1611c19157c313b075ad36d189262885639b1c98e1cfb94f91efb8_200_uwydxt.webp'
             }
         }
     }, [theme, systemTheme])
