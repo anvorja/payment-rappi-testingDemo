@@ -33,15 +33,17 @@ export default function PaymentPage() {
     const [orderTime, setOrderTime] = useState<Date | null>(null);
     const [isProcessing, setIsProcessing] = useState(false);
 
+    const [userType, setUserType] = useState<string>("regular");
+
     // Cálculo del total
-// Cálculo del total
+// Modifica la función calculateTotal
     const calculateTotal = () => {
         const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-        // Aplicar descuento según el código promocional
+        // Aplicar descuento según el código promocional y tipo de usuario
         let discount = 0;
         if (discountApplied && appliedPromoCode) {
-            // Podríamos tener lógica específica según el código aplicado
+            // Descuento por código promocional
             if (appliedPromoCode === 'RAPPI10') {
                 discount = subtotal * 0.1; // 10% de descuento
             } else if (appliedPromoCode === 'WELCOME') {
@@ -53,13 +55,43 @@ export default function PaymentPage() {
             }
         }
 
-        const deliveryFee = selectedRestaurant?.deliveryFee || 0;
+        // Descuento adicional para usuarios premium (5%)
+        if (userType === "premium") {
+            discount += subtotal * 0.05;
+        }
+
+        // Descuento de bienvenida para usuarios nuevos ($2.000)
+        if (userType === "new") {
+            discount += 2.0; // $2 equivalente a $2.000
+        }
+
+        // Determinar tarifa de envío según la dirección seleccionada
+        let deliveryFee = 3.5; // Valor por defecto (media)
+        if (selectedAddress) {
+            if (selectedAddress.id === 1) deliveryFee = 2.5; // Cercana
+            else if (selectedAddress.id === 2) deliveryFee = 3.5; // Media
+            else if (selectedAddress.id === 3) deliveryFee = 4.5; // Lejana
+        }
+
+        // Determinar si aplica envío gratis
+        let freeShipping = false;
+
+        // Por valor alto del pedido (>$30) para cualquier usuario
+        if (subtotal > 30) {
+            freeShipping = true;
+        }
+
+        // Por tipo de usuario Premium con pedido medio o alto
+        if (userType === "premium" && subtotal >= 15) {
+            freeShipping = true;
+        }
 
         return {
             subtotal,
             discount,
-            deliveryFee,
-            total: subtotal - discount + deliveryFee
+            deliveryFee: freeShipping ? 0 : deliveryFee,
+            total: subtotal - discount + (freeShipping ? 0 : deliveryFee),
+            freeShipping // Nuevo campo para indicar si se aplicó envío gratis
         };
     };
 
@@ -296,6 +328,8 @@ export default function PaymentPage() {
                                         goToNextTab("confirmation");
                                     }}
                                     onGoBack={() => goToNextTab("address")}
+                                    userType={userType}
+                                    onUserTypeChange={setUserType}
                                 />
                             </TabsContent>
 
@@ -309,6 +343,7 @@ export default function PaymentPage() {
                                     cartItems={cart}
                                     orderSummary={calculateTotal()}
                                     onNewOrder={resetOrder}
+                                    freeShipping={calculateTotal().freeShipping}
                                 />
                             </TabsContent>
                         </div>

@@ -24,6 +24,7 @@ interface OrderConfirmationProps {
         total: number;
     };
     onNewOrder: () => void;
+    freeShipping: boolean;
 }
 
 const OrderConfirmation: React.FC<OrderConfirmationProps> = ({
@@ -34,7 +35,8 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = ({
                                                                  paymentMethod,
                                                                  cartItems,
                                                                  orderSummary,
-                                                                 onNewOrder
+                                                                 onNewOrder,
+                                                                 freeShipping
                                                              }) => {
     // Renderizar estado según el status
     const renderOrderStatus = () => {
@@ -208,7 +210,9 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = ({
 
                         <div className="flex justify-between text-sm">
                             <span className="text-muted-foreground">Costo de envío</span>
-                            <span>${orderSummary.deliveryFee.toFixed(2)}</span>
+                            <span>${orderSummary.deliveryFee.toFixed(2)}
+                                {freeShipping && <span className="text-green-600 ml-2">(¡Gratis!)</span>}
+                            </span>
                         </div>
 
                         <div className="pt-2 flex justify-between font-bold">
