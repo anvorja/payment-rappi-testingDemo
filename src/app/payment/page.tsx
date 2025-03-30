@@ -265,6 +265,8 @@ export default function PaymentPage() {
                             </TabsTrigger>
                         </TabsList>
 
+                        <div className="h-4"></div>
+
                         <div className="mt-4">
                             <TabsContent value="restaurants" className="space-y-4">
                                 <RestaurantList

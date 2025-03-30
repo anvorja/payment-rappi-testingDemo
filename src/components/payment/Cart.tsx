@@ -186,18 +186,60 @@ const Cart: React.FC<CartProps> = ({
                     </div>
                 </CardContent>
 
-                <div className="mt-4 pt-3 border-t text-sm text-muted-foreground">
-                    <h4 className="font-medium mb-2">Información de envío:</h4>
-                    <div className="space-y-1">
-                        <p> • Área cercana: $2.50</p>
-                        <p> • Área media: $3.50</p>
-                        <p> • Área lejana: $4.50</p>
-                        <p className="mt-2 text-blue-600 dark:text-blue-400">
-                            <strong>Envío gratis para:</strong>
-                        </p>
-                        <p> • Pedidos de valor alto ({'>'}$30.000)</p>
-                        <p> • Usuarios Premium con pedidos medianos o altos</p>
-                    </div>
+                <div className="mt-6 mb-4">
+                    <Card className="border border-blue-200 dark:border-blue-800 shadow-sm">
+                        <CardContent className="p-5">
+                            <div className="flex items-center mb-4 text-blue-700 dark:text-blue-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 mr-2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                                </svg>
+                                <h4 className="font-semibold text-lg">Información de envío</h4>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                                <div className="bg-blue-50/50 dark:bg-blue-950/30 p-4 rounded-lg">
+                                    <h5 className="font-medium text-blue-800 dark:text-blue-300 mb-3 pb-1 border-b border-blue-100 dark:border-blue-800">
+                                        Tarifas de envío
+                                    </h5>
+                                    <ul className="space-y-2">
+                                        <li className="flex items-center text-blue-700 dark:text-blue-300">
+                                            <div className="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+                                            <span className="font-medium">Área cercana:</span>
+                                            <span className="ml-auto">$2.50</span>
+                                        </li>
+                                        <li className="flex items-center text-blue-700 dark:text-blue-300">
+                                            <div className="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+                                            <span className="font-medium">Área media:</span>
+                                            <span className="ml-auto">$3.50</span>
+                                        </li>
+                                        <li className="flex items-center text-blue-700 dark:text-blue-300">
+                                            <div className="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+                                            <span className="font-medium">Área lejana:</span>
+                                            <span className="ml-auto">$4.50</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div className="bg-green-50/50 dark:bg-green-950/30 p-4 rounded-lg">
+                                    <h5 className="font-medium text-green-800 dark:text-green-300 mb-3 pb-1 border-b border-green-100 dark:border-green-800">
+                                        Envío gratis para
+                                    </h5>
+                                    <ul className="space-y-2">
+                                        <li className="flex items-start text-green-700 dark:text-green-300">
+                                            <div className="w-2 h-2 rounded-full bg-green-500 mt-2 mr-2 flex-shrink-0"></div>
+                                            <span>Pedidos de valor alto ({'>'}$30.000)</span>
+                                        </li>
+                                        <li className="flex items-start text-green-700 dark:text-green-300">
+                                            <div className="w-2 h-2 rounded-full bg-green-500 mt-2 mr-2 flex-shrink-0"></div>
+                                            <span>Usuarios Premium con pedidos medianos o altos</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
                 </div>
 
                 <CardFooter className="px-4 pb-4">
