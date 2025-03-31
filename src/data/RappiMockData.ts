@@ -233,12 +233,12 @@ export const paymentMethods: PaymentMethod[] = [
     type: "cash",
     details: { description: "Pagar al repartidor" }
   },
-  {
-    id: 3,
-    name: "Transferencia Bancaria",
-    type: "bank_transfer",
-    details: { account: "**** 8901", bank: "Banco Nacional" }
-  },
+  // {
+  //   id: 3,
+  //   name: "Transferencia Bancaria",
+  //   type: "bank_transfer",
+  //   details: { account: "**** 8901", bank: "Banco Nacional" }
+  // },
   {
     id: 4,
     name: "Billetera Digital",
